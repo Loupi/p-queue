@@ -2,10 +2,10 @@
 import EventEmitter from 'eventemitter3';
 import test from 'ava';
 import delay from 'delay';
-import inRange from 'in-range';
-import timeSpan from 'time-span';
-import randomInt from 'random-int';
-import PQueue, {AbortError} from '../source/index.js';
+import inRange from 'in-range-cjs';
+import timeSpan from 'time-span-cjs';
+import randomInt from 'random-int-cjs';
+import PQueue, {AbortError} from '../source';
 
 const fixture = Symbol('fixture');
 
@@ -43,8 +43,8 @@ test('.add() - concurrency: 1', async t => {
 	const queue = new PQueue({concurrency: 1});
 
 	const mapper = async ([value, ms]: readonly number[]) => queue.add(async () => {
-		await delay(ms!);
-		return value!;
+		await delay(ms);
+		return value;
 	});
 
 	// eslint-disable-next-line unicorn/no-array-callback-reference
@@ -492,7 +492,6 @@ test('.add() sync/async mixed tasks', async t => {
 
 test.failing('.add() - handle task throwing error', async t => {
 	const queue = new PQueue({concurrency: 1});
-
 	queue.add(() => 'sync 1');
 	await t.throwsAsync(
 		queue.add(
@@ -503,9 +502,7 @@ test.failing('.add() - handle task throwing error', async t => {
 		{message: 'broken'},
 	);
 	queue.add(() => 'sync 2');
-
 	t.is(queue.size, 2);
-
 	await queue.onIdle();
 });
 

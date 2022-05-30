@@ -1,8 +1,8 @@
 import EventEmitter from 'eventemitter3';
-import pTimeout, {TimeoutError} from 'p-timeout';
-import {Queue, RunFunction} from './queue.js';
-import PriorityQueue from './priority-queue.js';
-import {QueueAddOptions, Options, TaskOptions} from './options.js';
+import pTimeout, {TimeoutError} from 'p-timeout-cjs';
+import {Queue, RunFunction} from './queue';
+import PriorityQueue from './priority-queue';
+import {QueueAddOptions, Options, TaskOptions} from './options';
 
 type ResolveFunction<T = void> = (value?: T | PromiseLike<T>) => void;
 
@@ -429,4 +429,4 @@ export default class PQueue<QueueType extends Queue<RunFunction, EnqueueOptionsT
 }
 
 // TODO: Rename `DefaultAddOptions` to `QueueAddOptions` in next major version
-export {Queue, QueueAddOptions, QueueAddOptions as DefaultAddOptions, Options};
+// export {Queue, QueueAddOptions, QueueAddOptions as DefaultAddOptions, Options};

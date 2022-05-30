@@ -1,10 +1,44 @@
 {
-	"extends": "@sindresorhus/tsconfig",
 	"compilerOptions": {
-		"outDir": "dist",
-		"noPropertyAccessFromIndexSignature": false
+		"target": "ES2018", // Node.js 14
+		"module": "commonjs",
+		"outDir": "./dist",
+		"lib": [
+			"DOM",
+			"DOM.Iterable",
+			"es2018"
+		],
+		"allowJs": true,
+    "checkJs": true,
+    "removeComments": true,
+    "declaration": true,
+		"declarationMap": false,
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": false,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "inlineSourceMap": true,
+    "inlineSources": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strictPropertyInitialization": false,
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
 	},
 	"include": [
-		"source"
-	]
+    "source/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/node_modules/*"
+  ]
 }
